@@ -7,5 +7,5 @@ import (
 
 func NoteRoutes(route *fiber.App) {
 	api := route.Group("/notes")
-	api.Get("/notes", controller.NoteType)
+	api.Get("/notes", controller.AddNote)
 }

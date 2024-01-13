@@ -8,6 +8,7 @@ type QuizResult struct {
 	QuestionCount int
 	AnswerCount   int
 	Result        float32
+	QuizComment   string
 	CreatedBy     string
 	CreatedAt     time.Time
 	ModifiedBy    string

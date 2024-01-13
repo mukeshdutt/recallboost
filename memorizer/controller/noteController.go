@@ -2,14 +2,22 @@ package controller
 
 import "github.com/gofiber/fiber/v2"
 
-func NoteType(c *fiber.Ctx) error {
-	// sampleResponse := "Hello from note controller file"
-	// return c.Status(200).JSON(fiber.Map{
-	// 	"success": true,
-	// })
-	return c.SendString("hello response from first notes api")
+func GetNotesByUserID(c *fiber.Ctx) error {
+	return c.SendString("")
 }
 
-func Notes(c *fiber.Ctx) {
+func GetNoteByID(c *fiber.Ctx) error {
+	return c.SendString("")
+}
 
+func AddNote(c *fiber.Ctx) error {
+	return c.SendString("")
+}
+
+func EditNote(c *fiber.Ctx) error {
+	return c.SendString("")
+}
+
+func RemoveNote(c *fiber.Ctx) error {
+	return c.SendString("")
 }
