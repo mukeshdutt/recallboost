@@ -1,4 +1,9 @@
+import React from 'react'
 
-function vocabulary() {
-
+const vocabulary = () => {
+  return (
+    <div>vocabulary</div>
+  )
 }
+
+export default vocabulary
