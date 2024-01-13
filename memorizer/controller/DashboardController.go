@@ -11,10 +11,10 @@ func Last10(c *fiber.Ctx) error {
 	return c.SendString("")
 }
 
-func LearnedYesterday(c *fiber.Ctx) error {
+func LearntYesterday(c *fiber.Ctx) error {
 	return c.SendString("")
 }
 
-func LearnedIn7Days(c *fiber.Ctx) error {
+func LearntIn7Days(c *fiber.Ctx) error {
 	return c.SendString("")
 }
