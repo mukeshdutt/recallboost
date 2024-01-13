@@ -5,10 +5,10 @@ import (
 	"github.com/memorizer/controller"
 )
 
-func R_note(route *fiber.Group) {
-	route.Get("/", controller.GetNoteByID)
-	route.Get("/", controller.GetNotesByUserID)
-	route.Post("/", controller.AddNote)
-	route.Put("/", controller.EditNote)
-	route.Delete("/", controller.RemoveNote)
+func R_note(router fiber.Group) {
+	router.Get("/", controller.GetNoteByID)
+	router.Get("/", controller.GetNotesByUserID)
+	router.Post("/", controller.AddNote)
+	router.Put("/", controller.EditNote)
+	router.Delete("/", controller.RemoveNote)
 }

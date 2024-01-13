@@ -5,9 +5,9 @@ import (
 	"github.com/memorizer/controller"
 )
 
-func R_dashboard(route *fiber.Group) {
-	route.Get("/", controller.UserLearning)
-	route.Get("/", controller.Last10)
-	route.Get("/", controller.LearntYesterday)
-	route.Get("/", controller.LearntIn7Days)
+func R_dashboard(router fiber.Router) {
+	router.Get("/", controller.UserLearning)
+	router.Get("/", controller.Last10)
+	router.Get("/", controller.LearntYesterday)
+	router.Get("/", controller.LearntIn7Days)
 }
