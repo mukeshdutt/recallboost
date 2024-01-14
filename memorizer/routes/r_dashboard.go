@@ -6,8 +6,8 @@ import (
 )
 
 func R_dashboard(router fiber.Router) {
-	router.Get("/", controller.UserLearning)
-	router.Get("/", controller.Last10)
-	router.Get("/", controller.LearntYesterday)
-	router.Get("/", controller.LearntIn7Days)
+	router.Get("/user-learning", controller.UserLearning)
+	router.Get("/last-10", controller.Last10)
+	router.Get("/learnt-yesterday", controller.LearntYesterday)
+	router.Get("/learnt-in-7-day", controller.LearntIn7Days)
 }

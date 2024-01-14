@@ -4,7 +4,7 @@ import "github.com/gofiber/fiber/v2"
 
 // Show the count of Phrases and Vocabulary learned so far
 func UserLearning(c *fiber.Ctx) error {
-	return c.SendString("")
+	return c.SendString("User Learning")
 }
 
 func Last10(c *fiber.Ctx) error {

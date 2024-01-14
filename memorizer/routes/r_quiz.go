@@ -5,8 +5,8 @@ import (
 	"github.com/memorizer/controller"
 )
 
-func R_quiz(route *fiber.Group) {
-	route.Get("/", controller.QuizBegin)
-	route.Get("/", controller.QuizResult)
-	route.Get("/", controller.QuizHistoryByUserID)
+func R_quiz(router fiber.Router) {
+	router.Get("/", controller.QuizBegin)
+	router.Get("/", controller.QuizResult)
+	router.Get("/", controller.QuizHistoryByUserID)
 }

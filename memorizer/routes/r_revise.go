@@ -5,9 +5,9 @@ import (
 	"github.com/memorizer/controller"
 )
 
-func R_revise(route *fiber.Group) {
-	route.Get("/", controller.VocabularyByPeriod)
-	route.Get("/", controller.PhraseByPeriod)
-	route.Post("/", controller.AddRevision)
-	route.Post("/", controller.RevisionHistoryByUserID)
+func R_revise(router fiber.Router) {
+	router.Get("/", controller.VocabularyByPeriod)
+	router.Get("/", controller.PhraseByPeriod)
+	router.Post("/", controller.AddRevision)
+	router.Post("/", controller.RevisionHistoryByUserID)
 }
