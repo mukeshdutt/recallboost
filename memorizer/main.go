@@ -1,9 +1,13 @@
 package main
 
 import (
-	_ "github.com/go-sql-driver/mysql"
+	_ "database/sql"
+	"fmt"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/memorizer/routes"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
 )
 
 func main() {
@@ -18,4 +22,13 @@ func main() {
 	routes.R_vocabulary(app.Group("/api/vocabulary"))
 
 	app.Listen(":3000")
+}
+
+func GetData() {
+
+	dsn := "root:@Pass810@tcp(127.0.0.1:3306)/memorize?charset=utf8mb4&parseTime=True&loc=Local"
+	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	if err != nil {
+		fmt.Println("error occurred")
+	}
 }
