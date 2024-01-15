@@ -6,7 +6,7 @@ import (
 )
 
 func R_vocabulary(router fiber.Router) {
-	router.Get("/", controller.GetAllVocabulary)
+	router.Get("/all", controller.GetAllVocabulary)
 	router.Get("/", controller.GetVocabulary)
 	router.Post("/", controller.AddVocabulary)
 	router.Put("/", controller.EditVocabulary)

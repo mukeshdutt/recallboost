@@ -1,8 +1,21 @@
 package controller
 
-import "github.com/gofiber/fiber/v2"
+import (
+	"fmt"
+
+	"github.com/gofiber/fiber/v2"
+	"github.com/memorizer/database"
+	"github.com/memorizer/domain"
+)
 
 func GetVocabulary(c *fiber.Ctx) error {
+
+	db := database.Connection()
+
+	var vocab = []domain.Vocabulary{}
+	db.Find(&vocab)
+	fmt.Println(len(vocab))
+
 	return c.SendString("")
 }
 

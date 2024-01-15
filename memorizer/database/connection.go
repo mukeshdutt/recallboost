@@ -1,16 +1,15 @@
 package database
 
-func GetConnecction() {
-	// db, err := sql.Open("mysql", "root:@Pass810@/memorize")
+import (
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
+)
 
-	// if err != nil {
-	// 	fmt.Print("error ocurred")
-	// }
-	// defer db.Close()
-
-	// insert, err := db.Query("insert into note_type(type_name, is_active) values('sample', 1)")
-	// if err != nil {
-	// 	fmt.Println(err)
-	// }
-	// defer insert.Close()
+func Connection() *gorm.DB {
+	dsn := "root:@Pass810@tcp(127.0.0.1:3306)/memorize?charset=utf8mb4&parseTime=True&loc=Local"
+	DB, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	if err != nil {
+		panic("error occurred")
+	}
+	return DB
 }
