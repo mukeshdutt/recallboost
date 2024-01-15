@@ -2,8 +2,11 @@ package main
 
 import (
 	_ "database/sql"
+	"fmt"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/memorizer/database"
+	"github.com/memorizer/domain"
 	"github.com/memorizer/routes"
 	"gorm.io/gorm"
 )
@@ -21,5 +24,12 @@ func main() {
 	routes.R_revise(app.Group("/api/revise"))
 	routes.R_vocabulary(app.Group("/api/vocabulary"))
 
-	app.Listen(":3000")
+	// ---- database logic checking here
+	db := database.Connection()
+
+	var vocabulary domain.Vocabulary
+	db.Find(&vocabulary)
+	fmt.Println(vocabulary)
+
+	// app.Listen(":3000")
 }
