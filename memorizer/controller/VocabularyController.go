@@ -87,9 +87,26 @@ func GetVocabularyByID(c *fiber.Ctx) error {
 
 func AddVocabulary(c *fiber.Ctx) error {
 
-	c.Request().Body()
+	vocab := new(domain.Vocabulary)
+	if err := c.BodyParser(vocab); err != nil {
+		return c.Status(fiber.StatusBadRequest).SendString("Invalid request")
+	}
 
-	return c.SendString("")
+	vocabulary := domain.Vocabulary{
+		VocabularyID:  vocab.VocabularyID,
+		Vocabulary:    vocab.Vocabulary,
+		Detail:        vocab.Detail,
+		ReferenceFrom: vocab.ReferenceFrom,
+		UsageType:     vocab.UsageType,
+		Antonyms:      vocab.Antonyms,
+		Synomyms:      vocab.Synomyms,
+		PartsofSpeech: vocab.PartsofSpeech,
+	}
+	result := database.DB.Create(&vocabulary)
+	if result.Error != nil {
+		return c.Status(fiber.StatusInternalServerError).SendString("Internal server error")
+	}
+	return c.Status(fiber.StatusOK).SendString("Record added successfully")
 }
 
 func EditVocabulary(c *fiber.Ctx) error {
