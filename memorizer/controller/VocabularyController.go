@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"time"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/memorizer/database"
@@ -85,11 +86,12 @@ func GetVocabularyByID(c *fiber.Ctx) error {
 	return c.Status(fiber.StatusOK).SendString(string(result))
 }
 
+// Add new vocabulary
 func AddVocabulary(c *fiber.Ctx) error {
 
-	vocab := new(domain.Vocabulary)
+	vocab := new(viewmodel.VM_vocabulary)
 	if err := c.BodyParser(vocab); err != nil {
-		return c.Status(fiber.StatusBadRequest).SendString("Invalid request")
+		return c.Status(fiber.StatusBadRequest).SendString("Invalid request payload")
 	}
 
 	vocabulary := domain.Vocabulary{
@@ -102,17 +104,53 @@ func AddVocabulary(c *fiber.Ctx) error {
 		Synomyms:      vocab.Synomyms,
 		PartsofSpeech: vocab.PartsofSpeech,
 	}
-	result := database.DB.Create(&vocabulary)
-	if result.Error != nil {
+	if database.DB.Create(&vocabulary).Error != nil {
 		return c.Status(fiber.StatusInternalServerError).SendString("Internal server error")
 	}
 	return c.Status(fiber.StatusOK).SendString("Record added successfully")
 }
 
+// Edit existing vacabulary
 func EditVocabulary(c *fiber.Ctx) error {
-	return c.SendString("")
+
+	vocabID, err := helpers.IsValidNumber(c.Params("id"))
+	if err != nil {
+		return c.SendString("")
+	}
+
+	vocab := new(viewmodel.VM_vocabulary)
+	if err := c.BodyParser(vocab); err != nil {
+		return c.Status(fiber.StatusBadRequest).SendString("Invalid request payload")
+	}
+
+	vocabulary := domain.Vocabulary{
+		VocabularyID:  vocabID,
+		Vocabulary:    vocab.Vocabulary,
+		Detail:        vocab.Detail,
+		ReferenceFrom: vocab.ReferenceFrom,
+		UsageType:     vocab.UsageType,
+		Antonyms:      vocab.Antonyms,
+		Synomyms:      vocab.Synomyms,
+		PartsofSpeech: vocab.PartsofSpeech,
+		ModifiedBy:    1,
+		ModifiedAt:    time.Now(),
+	}
+	if database.DB.Save(&vocabulary).Error != nil {
+		return c.Status(fiber.StatusInternalServerError).SendString("internal server error")
+	}
+	return c.Status(fiber.StatusOK).SendString("Vocabulary updated successfully")
 }
 
+// Remove existing vocabulary
 func RemoveVocabulary(c *fiber.Ctx) error {
-	return c.SendString("")
+
+	vocabID, err := helpers.IsValidNumber(c.Params("id"))
+	if err != nil {
+		return c.Status(fiber.StatusNotFound).SendString("vocabulary id not found")
+	}
+
+	if database.DB.Delete(&domain.Vocabulary{}, vocabID).Error != nil {
+		return c.Status(fiber.StatusInternalServerError).SendString("Interal server error")
+	}
+	return c.Status(fiber.StatusOK).SendString("Record deleted successfully")
 }
