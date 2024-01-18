@@ -7,7 +7,7 @@ import (
 
 func R_phrase(router fiber.Router) {
 	router.Get("/", controller.GetAllPhrase)
-	router.Get("/", controller.GetPhrase)
+	router.Get("/", controller.GetPhraseByID)
 	router.Post("/", controller.AddPhrase)
 	router.Put("/", controller.EditPhrase)
 	router.Delete("/", controller.RemovePhrase)

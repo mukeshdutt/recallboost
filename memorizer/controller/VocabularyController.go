@@ -2,7 +2,6 @@ package controller
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"time"
 
@@ -17,9 +16,6 @@ import (
 func GetAllVocabulary(c *fiber.Ctx) error {
 
 	var vocabs []domain.Vocabulary
-	database.DB.Find(&vocabs)
-	fmt.Println(vocabs)
-
 	if err := database.DB.Find(&vocabs).Error; err != nil {
 		log.Printf("Error fetching vocabulary: %v", err)
 		return c.Status(fiber.StatusInternalServerError).SendString("Internal Server Error")
