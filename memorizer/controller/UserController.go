@@ -10,3 +10,12 @@ func Login(c *fiber.Ctx) error {
 
 	return c.SendString("")
 }
+
+func ForgotPassword(c *fiber.Ctx) error {
+
+	return c.SendString("")
+}
+
+func ResetPassword(c *fiber.Ctx) error {
+	return c.SendString("")
+}
