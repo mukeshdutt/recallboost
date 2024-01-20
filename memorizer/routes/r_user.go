@@ -6,8 +6,8 @@ import (
 )
 
 func R_user(router fiber.Router) {
-	router.Get("", controller.Register)
-	router.Get("", controller.Login)
-	router.Get("", controller.ForgotPassword)
-	router.Get("", controller.ResetPassword)
+	router.Get("/register", controller.Register)
+	router.Get("/login", controller.Login)
+	router.Get("/forgot", controller.ForgotPassword)
+	router.Get("/reset", controller.ResetPassword)
 }

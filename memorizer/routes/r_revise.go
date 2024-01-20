@@ -6,8 +6,8 @@ import (
 )
 
 func R_revise(router fiber.Router) {
-	router.Get("/", controller.VocabularyByPeriod)
-	router.Get("/", controller.PhraseByPeriod)
+	router.Get("/vocabulary", controller.VocabularyByPeriod)
+	router.Get("/phrase", controller.PhraseByPeriod)
 	router.Post("/", controller.AddRevision)
-	router.Post("/", controller.RevisionHistoryByUserID)
+	router.Post("/history", controller.RevisionHistoryByUserID)
 }

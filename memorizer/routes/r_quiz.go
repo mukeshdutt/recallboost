@@ -6,7 +6,7 @@ import (
 )
 
 func R_quiz(router fiber.Router) {
-	router.Get("/", controller.QuizBegin)
-	router.Get("/", controller.QuizResult)
-	router.Get("/", controller.QuizHistoryByUserID)
+	router.Get("/question", controller.QuizBegin)
+	router.Get("/result/:userid", controller.QuizResult)
+	router.Get("/history/:userid", controller.QuizHistoryByUserID)
 }
